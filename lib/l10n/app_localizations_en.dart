@@ -16,4 +16,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mohamed_adel => 'Mohamed Adel';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get courses => 'Courses';
+
+  @override
+  String get about_me => 'About Me';
+
+  @override
+  String get projects => 'Projects';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get arabic => 'Arabic';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'app_text_styles.dart';
+import 'style/app_size.dart';
 
 enum DeviceType { mobile, tablet, desktop }
 
@@ -35,4 +36,21 @@ extension StyleContextExtension on BuildContext {
         return LargeTextStyles();
     }
   }
+
+  AppInsets get insets {
+    switch (deviceType) {
+      case DeviceType.mobile:
+        return SmallInsets();
+      case DeviceType.tablet:
+      case DeviceType.desktop:
+        return LargeInsets();
+    }
+  }
+
+  ThemeData get theme => Theme.of(this);
+
+  ColorScheme get colorScheme => theme.colorScheme;
+
+  // AppLocalizations get texts =>
+  //     AppLocalizations.of(this) ?? lookupAppLocalizations(Locale("en"));
 }

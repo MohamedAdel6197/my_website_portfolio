@@ -1,5 +1,12 @@
 {
+    "@@locale": "ar",
     "mohamed": "محمد",
     "adel": "عادل",
-    "mohamed_adel": "محمد عادل"
+    "mohamed_adel": "محمد عادل",
+    "home": "الصفحة الرئيسية",
+    "courses": "الدورات",
+    "about_me": "معلومات عني",
+    "projects": "المشاريع",
+    "english": "اللغة الانجليزية",
+    "arabic": "اللغة العربية"
 }
