@@ -35,4 +35,18 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    
+  fonts:
+    - family: Dosis
+      fonts:
+        - asset: assets/fonts/Dosis-Regular.ttf
+        - asset: assets/fonts/Dosis-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Dosis-medium.ttf    
+          weight: 500
+    - family: Beiruti
+      fonts:
+        - asset: assets/fonts/Beiruti-Regular.ttf
+        - asset: assets/fonts/Beiruti-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Beiruti-Medium.ttf    
+          weight: 500  

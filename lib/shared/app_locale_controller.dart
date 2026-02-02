@@ -1,10 +1,11 @@
-import 'dart:async';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'app_shared_pref.dart';
 
-import '../shared/app_shared_pref.dart';
+part 'app_locale_controller.g.dart';
 
-class AppLocaleController extends AsyncNotifier<String> {
+@riverpod
+class AppLocaleController extends _$AppLocaleController {
   @override
   FutureOr<String> build() {
     return AppSharedPref.getLocale();

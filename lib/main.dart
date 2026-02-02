@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'app_locale_controller.dart';
 import 'home_page.dart';
 import 'l10n/app_localizations.dart';
-import 'provider.dart';
+import 'style/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +18,7 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(appLocaleProvider);
+    final locale = ref.watch(appLocaleControllerProvider);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       locale: Locale(locale.value ?? 'en'),
@@ -29,7 +30,12 @@ class MainApp extends ConsumerWidget {
       ],
       supportedLocales: const [Locale('en'), Locale('ar')],
       themeMode: ThemeMode.dark,
-      darkTheme: ThemeData.dark(),
+      darkTheme: AppTheme(
+        fontFamily: (locale.value ?? 'en') == 'en' ? "Dosis" : "Beiruti",
+      ).dark,
+      theme: AppTheme(
+        fontFamily: (locale.value ?? 'en') == 'en' ? "Dosis" : "Beiruti",
+      ).light,
       home: const HomePage(),
     );
   }
