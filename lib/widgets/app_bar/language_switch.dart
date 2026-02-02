@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:my_website_portfolio/extensions.dart';
 
-import '../../app_locale_controller.dart';
+import '../../shared/app_locale_controller.dart';
 import '../seo_text.dart';
 
 class AppBarLanguageToggle extends ConsumerWidget {
@@ -26,9 +26,7 @@ class AppBarLanguageToggle extends ConsumerWidget {
         ];
       },
       onSelected: (value) {
-        ref
-            .read(appLocaleControllerProvider.notifier)
-            .setLocale(value == 0 ? 'en' : 'ar');
+        ref.read(appLocaleControllerProvider.notifier).changeLanguage();
       },
       initialValue: locale.value == 'en' ? 0 : 1,
       child: Row(

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'app_locale_controller.dart';
 import 'home_page.dart';
-import 'l10n/app_localizations.dart';
+import 'shared/app_locale_controller.dart';
+import 'shared/app_theme_controller.dart';
 import 'style/app_theme.dart';
 
 void main() {
@@ -19,24 +19,35 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(appLocaleControllerProvider);
+    final themeMode = ref.watch(appThemeControllerProvider);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       locale: Locale(locale.value ?? 'en'),
       localizationsDelegates: [
-        AppLocalizations.delegate,
+        // AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en'), Locale('ar')],
-      themeMode: ThemeMode.dark,
+      themeMode: themeMode.value ?? ThemeMode.dark,
       darkTheme: AppTheme(
         fontFamily: (locale.value ?? 'en') == 'en' ? "Dosis" : "Beiruti",
       ).dark,
       theme: AppTheme(
         fontFamily: (locale.value ?? 'en') == 'en' ? "Dosis" : "Beiruti",
       ).light,
-      home: const HomePage(),
+      home: Stack(
+        children: [
+          const HomePage(),
+          if (locale.isLoading || themeMode.isLoading)
+            Container(
+              color: Colors.black54,
+              child: const Center(child: CircularProgressIndicator()),
+            ),
+        ],
+      ),
     );
   }
 }

@@ -1,9 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app_text_styles.dart';
 import '../../constants/appbar_menu_items.dart';
 import '../../extensions.dart';
+import '../../shared/app_theme_controller.dart';
+import '../../style/app_colors.dart';
 import '../../style/app_size.dart';
 import 'drawer_icon.dart';
 import 'language_switch.dart';
@@ -23,14 +26,16 @@ class MyAppBar extends StatelessWidget {
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: Insets.maxWidth),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AppBarLogo(),
-            SizedBox(width: 30),
+            // const SizedBox(width: 20),
             AppBarTitle(),
-            Spacer(),
+            // Spacer(),
             if (context.isDesktop(context)) AppBarLargeMenu(),
-            Spacer(),
+            // Spacer(),
             AppBarLanguageToggle(),
+            // const SizedBox(width: 20),
             AppBarThemeToggle(),
             if (!context.isDesktop(context)) DrawerIcon(),
           ],
@@ -45,7 +50,11 @@ class AppBarLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(Icons.flutter_dash_outlined, size: 40);
+    return Icon(
+      Icons.flutter_dash_outlined,
+      size: 50,
+      color: AppColors.primaryColor,
+    );
   }
 }
 
@@ -55,7 +64,7 @@ class AppBarTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final width = MediaQuery.of(context).size.width;
-    return Text("mohamed adel", style: context.appTextStyles.titleLgBlod);
+    return Text("Mohamed Adel", style: context.appTextStyles.titleLgBlod);
   }
 }
 
@@ -101,9 +110,8 @@ class AppBarLargeMenuItem extends StatelessWidget {
         ),
         child: Text(
           title,
-          style:
-              // isSelected
-              // ? context.appTextStyles.titleLgBlod
+          style: /* isSelected
+              ? context.appTextStyles.titleLgBlod :*/
               SmallTextStyles().bodyLgMedium,
         ),
       ),
@@ -111,11 +119,31 @@ class AppBarLargeMenuItem extends StatelessWidget {
   }
 }
 
-class AppBarThemeToggle extends StatelessWidget {
+class AppBarThemeToggle extends ConsumerWidget {
   const AppBarThemeToggle({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Switch(value: false, onChanged: (value) {});
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(appThemeControllerProvider);
+    final isLight = themeMode.value == ThemeMode.light;
+    return Switch(
+      value: !isLight, // Active (true) means Dark Mode
+      onChanged: (value) {
+        ref.read(appThemeControllerProvider.notifier).toggleTheme();
+      },
+      activeColor: context.colorScheme.primary,
+      thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
+        Set<WidgetState> states,
+      ) {
+        if (states.contains(WidgetState.selected)) {
+          return const Icon(Icons.dark_mode, size: 16); // Dark mode icon
+        }
+        return const Icon(
+          Icons.light_mode,
+          size: 16,
+          color: Colors.orange,
+        ); // Light mode icon
+      }),
+    );
   }
 }

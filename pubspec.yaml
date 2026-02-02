@@ -13,10 +13,12 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^3.1.0
   flutter_svg: ^2.2.3
+  font_awesome_flutter: ^10.12.0
   gap: ^3.0.1
   intl: any
   riverpod_annotation: ^4.0.0
   shared_preferences: ^2.5.4
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
