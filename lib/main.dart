@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:localingo/localingo.dart';
 
 import 'home_page.dart';
 import 'shared/app_locale_controller.dart';
@@ -10,11 +11,13 @@ import 'style/app_theme.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(ProviderScope(child: const MainApp()));
+  runApp(ProviderScope(child: MainApp()));
 }
 
 class MainApp extends ConsumerWidget {
-  const MainApp({super.key});
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+
+  MainApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,11 +25,12 @@ class MainApp extends ConsumerWidget {
     final themeMode = ref.watch(appThemeControllerProvider);
 
     return MaterialApp(
+      navigatorKey: _navigatorKey,
       title: "Mohamed Adel Portfolio",
       debugShowCheckedModeBanner: false,
       locale: Locale(locale.value ?? 'en'),
       localizationsDelegates: [
-        // AppLocalizations.delegate,
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
