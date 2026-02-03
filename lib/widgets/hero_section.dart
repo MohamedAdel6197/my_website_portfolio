@@ -59,7 +59,7 @@ class _HeroImage extends StatelessWidget {
         gradient: isDark ? AppColors.accentGradient : AppColors.primaryGradient,
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryColor.withOpacity(0.4),
+            color: AppColors.primaryColor.withValues(alpha: 0.4),
             blurRadius: 30,
             spreadRadius: 10,
             offset: const Offset(0, 5),
@@ -104,9 +104,11 @@ class _HeroContent extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: AppColors.primaryColor.withOpacity(0.1),
+            color: AppColors.primaryColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppColors.primaryColor.withOpacity(0.3)),
+            border: Border.all(
+              color: AppColors.primaryColor.withValues(alpha: 0.3),
+            ),
           ),
           child: Text(
             "👋 Salut, I'm",
@@ -137,7 +139,7 @@ class _HeroContent extends StatelessWidget {
         Text(
           PortfolioData.title,
           style: context.appTextStyles.titleMdMedium.copyWith(
-            color: context.colorScheme.onSurface.withOpacity(0.8),
+            color: context.colorScheme.onSurface.withValues(alpha: 0.8),
             fontSize: 26,
             fontWeight: FontWeight.w300,
           ),
@@ -176,7 +178,7 @@ class _HeroContent extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: const Offset(0, 5),
               ),
@@ -190,7 +192,7 @@ class _HeroContent extends StatelessWidget {
               Text(
                 "${PortfolioData.location} • ${PortfolioData.phone}",
                 style: context.appTextStyles.bodyMdMedium.copyWith(
-                  color: context.colorScheme.onSurface.withOpacity(0.7),
+                  color: context.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -226,12 +228,14 @@ class _ContactChip extends StatelessWidget {
           color: isPrimary ? null : context.colorScheme.surface,
           border: isPrimary
               ? null
-              : Border.all(color: context.colorScheme.outline.withOpacity(0.3)),
+              : Border.all(
+                  color: context.colorScheme.outline.withValues(alpha: 0.3),
+                ),
           borderRadius: BorderRadius.circular(50),
           boxShadow: [
             if (isPrimary)
               BoxShadow(
-                color: AppColors.primaryColor.withOpacity(0.3),
+                color: AppColors.primaryColor.withValues(alpha: 0.3),
                 blurRadius: 15,
                 offset: const Offset(0, 5),
               ),

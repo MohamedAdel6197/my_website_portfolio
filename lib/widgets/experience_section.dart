@@ -53,10 +53,12 @@ class _ExperienceCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: context.colorScheme.outline.withOpacity(0.1)),
+        border: Border.all(
+          color: context.colorScheme.outline.withValues(alpha: 0.1),
+        ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryColor.withOpacity(0.05),
+            color: AppColors.primaryColor.withValues(alpha: 0.05),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -80,7 +82,7 @@ class _ExperienceCard extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                   border: Border.all(
-                    color: context.colorScheme.outline.withOpacity(0.4),
+                    color: context.colorScheme.outline.withValues(alpha: 0.4),
                   ),
                 ),
               ),
@@ -123,7 +125,9 @@ class _ExperienceCard extends StatelessWidget {
             _DateBadge(date: experience.period),
           ],
           const Gap(16),
-          Divider(color: context.colorScheme.outlineVariant.withOpacity(0.3)),
+          Divider(
+            color: context.colorScheme.outlineVariant.withValues(alpha: 0.3),
+          ),
           const Gap(16),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,7 +142,7 @@ class _ExperienceCard extends StatelessWidget {
                 child: Text(
                   experience.description,
                   style: context.appTextStyles.bodyLgMedium.copyWith(
-                    color: context.colorScheme.onSurface.withOpacity(0.8),
+                    color: context.colorScheme.onSurface.withValues(alpha: 0.8),
                     height: 1.5,
                   ),
                 ),
@@ -178,9 +182,11 @@ class _DateBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: AppColors.secondaryColor.withOpacity(0.1),
+        color: AppColors.secondaryColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.secondaryColor.withOpacity(0.3)),
+        border: Border.all(
+          color: AppColors.secondaryColor.withValues(alpha: 0.3),
+        ),
       ),
       child: Text(
         date,

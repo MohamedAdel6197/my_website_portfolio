@@ -13,7 +13,7 @@ class AppTheme {
       WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.hovered) ||
             states.contains(WidgetState.pressed)) {
-          return AppColors.primaryColor.withOpacity(0.8);
+          return AppColors.primaryColor.withValues(alpha: 0.8);
         }
         return AppColors.primaryColor;
       });
@@ -22,7 +22,9 @@ class AppTheme {
       WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.hovered) ||
             states.contains(WidgetState.pressed)) {
-          return BorderSide(color: AppColors.primaryColor.withOpacity(0.8));
+          return BorderSide(
+            color: AppColors.primaryColor.withValues(alpha: 0.8),
+          );
         }
         return const BorderSide(color: AppColors.primaryColor);
       });
@@ -39,7 +41,7 @@ class AppTheme {
       tertiary: AppColors.tertiaryColor,
     ),
     scaffoldBackgroundColor: AppColors.darkBackgroundColor,
-    appBarBackgroundColor: AppColors.darkSurfaceColor.withOpacity(0.8),
+    appBarBackgroundColor: AppColors.darkSurfaceColor.withValues(alpha: 0.8),
     elevatedButtonTextStyle: _elevatedButtonTextStyle,
     outlinedButtonTextStyle: _outlinedButtonTextStyle,
     cardColor: AppColors.darkSurfaceColor,
@@ -57,7 +59,7 @@ class AppTheme {
       tertiary: AppColors.tertiaryColor,
     ),
     scaffoldBackgroundColor: AppColors.lightBackgroundColor,
-    appBarBackgroundColor: AppColors.lightSurfaceColor.withOpacity(0.8),
+    appBarBackgroundColor: AppColors.lightSurfaceColor.withValues(alpha: 0.8),
     elevatedButtonTextStyle: _elevatedButtonTextStyle,
     outlinedButtonTextStyle: _outlinedButtonTextStyle,
     cardColor: AppColors.lightSurfaceColor,
@@ -131,7 +133,7 @@ class AppTheme {
           ),
           elevation: const WidgetStatePropertyAll(4), // Add subtle shadow
           shadowColor: WidgetStatePropertyAll(
-            AppColors.primaryColor.withOpacity(0.3),
+            AppColors.primaryColor.withValues(alpha: 0.3),
           ),
         ),
       ),

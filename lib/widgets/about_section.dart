@@ -12,7 +12,7 @@ class AboutSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: context.colorScheme.surfaceContainerHighest.withOpacity(0.3),
+      color: context.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
       padding: EdgeInsets.symmetric(
         vertical: context.insets.sectionPadding,
         horizontal: context.insets.padding,

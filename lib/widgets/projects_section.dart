@@ -15,7 +15,7 @@ class ProjectsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.colorScheme.surfaceContainerHighest.withOpacity(0.3),
+      color: context.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
       padding: EdgeInsets.symmetric(
         vertical: context.insets.sectionPadding,
         horizontal: context.insets.padding,
@@ -90,11 +90,13 @@ class _ProjectCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: context.colorScheme.outline.withOpacity(0.1)),
+        border: Border.all(
+          color: context.colorScheme.outline.withValues(alpha: 0.1),
+        ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.secondaryColor.withOpacity(
-              0.05,
+            color: AppColors.secondaryColor.withValues(
+              alpha: 0.05,
             ), // Using secondary color for projects
             blurRadius: 15,
             offset: const Offset(0, 8),
@@ -134,7 +136,7 @@ class _ProjectCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
-              color: AppColors.primaryColor.withOpacity(0.1),
+              color: AppColors.primaryColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Builder(
@@ -170,7 +172,7 @@ class _ProjectCard extends StatelessWidget {
                                   ? TextDecoration.underline
                                   : null,
                               decorationColor: AppColors.primaryColor
-                                  .withOpacity(0.5),
+                                  .withValues(alpha: 0.5),
                             ),
                             recognizer: url != null
                                 ? (TapGestureRecognizer()
@@ -199,12 +201,14 @@ class _ProjectCard extends StatelessWidget {
           Text(
             project.description,
             style: context.appTextStyles.bodyLgMedium.copyWith(
-              color: context.colorScheme.onSurface.withOpacity(0.8),
+              color: context.colorScheme.onSurface.withValues(alpha: 0.8),
               height: 1.5,
             ),
           ),
           const Gap(20),
-          Divider(color: context.colorScheme.outlineVariant.withOpacity(0.3)),
+          Divider(
+            color: context.colorScheme.outlineVariant.withValues(alpha: 0.3),
+          ),
           const Gap(12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
