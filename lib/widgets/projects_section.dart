@@ -1,9 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions.dart';
 import '../models/portfolio_data.dart';
+import '../style/app_colors.dart';
 import '../style/app_size.dart';
 
 class ProjectsSection extends StatelessWidget {
@@ -87,54 +90,165 @@ class _ProjectCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: context.colorScheme.outline.withOpacity(0.1)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            color: AppColors.secondaryColor.withOpacity(
+              0.05,
+            ), // Using secondary color for projects
+            blurRadius: 15,
+            offset: const Offset(0, 8),
           ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            project.name,
-            style: context.appTextStyles.titleMdMedium.copyWith(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(
+                  project.name,
+                  style: context.appTextStyles.titleMdMedium.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: context.colorScheme.onSurface,
+                  ),
+                ),
+              ),
+              if (project.link != null)
+                IconButton(
+                  onPressed: () => _launchUrl(project.link!),
+                  icon: Icon(
+                    Icons.arrow_outward,
+                    size: 20,
+                    color: AppColors.secondaryColor,
+                  ),
+                  tooltip: "View Project",
+                ),
+            ],
           ),
-          const Gap(4),
-          Text(
-            project.platforms,
-            style: context.appTextStyles.bodyMdMedium.copyWith(
-              color: context.colorScheme.primary,
-              fontWeight: FontWeight.w600,
+          const Gap(8),
+          const Gap(8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
             ),
-          ),
-          const Gap(12),
-          Text(
-            project.description,
-            style: context.appTextStyles.bodyLgMedium.copyWith(
-              color: context.colorScheme.onSurfaceVariant,
+            child: Builder(
+              builder: (context) {
+                final parts = project.platforms.split(' - ');
+                return RichText(
+                  text: TextSpan(
+                    children: parts.asMap().entries.map((entry) {
+                      final int idx = entry.key;
+                      final String part = entry.value.trim();
+
+                      String? url;
+                      if (part.contains('Play Store') ||
+                          part.contains('Google Play')) {
+                        url = project.playStoreLink;
+                      } else if (part.contains('App Store')) {
+                        url = project.appStoreLink;
+                      } else if (part.contains('Web')) {
+                        url = project.link;
+                      } else if (part.contains('Demo')) {
+                        url = project.demoLink;
+                      }
+
+                      return TextSpan(
+                        children: [
+                          TextSpan(
+                            text: part,
+                            style: context.appTextStyles.bodyMdMedium.copyWith(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              decoration: url != null
+                                  ? TextDecoration.underline
+                                  : null,
+                              decorationColor: AppColors.primaryColor
+                                  .withOpacity(0.5),
+                            ),
+                            recognizer: url != null
+                                ? (TapGestureRecognizer()
+                                    ..onTap = () => _launchUrl(url!))
+                                : null,
+                          ),
+                          if (idx < parts.length - 1)
+                            TextSpan(
+                              text: " - ",
+                              style: context.appTextStyles.bodyMdMedium
+                                  .copyWith(
+                                    color: AppColors.primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                            ),
+                        ],
+                      );
+                    }).toList(),
+                  ),
+                );
+              },
             ),
           ),
           const Gap(16),
           Text(
-            project.period,
-            style: context.appTextStyles.bodyMdMedium.copyWith(
-              color: context.colorScheme.outline,
+            project.description,
+            style: context.appTextStyles.bodyLgMedium.copyWith(
+              color: context.colorScheme.onSurface.withOpacity(0.8),
+              height: 1.5,
             ),
           ),
-          if (project.link != null) ...[
-            const Gap(16),
-            OutlinedButton.icon(
-              onPressed: () => _launchUrl(project.link!),
-              icon: const Icon(Icons.open_in_new, size: 16),
-              label: const Text("View Project"),
-            ),
-          ],
+          const Gap(20),
+          Divider(color: context.colorScheme.outlineVariant.withOpacity(0.3)),
+          const Gap(12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                project.period,
+                style: context.appTextStyles.bodyMdMedium.copyWith(
+                  color: context.colorScheme.onSurfaceVariant,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              Row(
+                children: [
+                  if (project.playStoreLink != null) ...[
+                    IconButton(
+                      onPressed: () => _launchUrl(project.playStoreLink!),
+                      icon: const FaIcon(FontAwesomeIcons.googlePlay, size: 20),
+                      color: context.colorScheme.onSurface,
+                      tooltip: "Google Play",
+                    ),
+                  ],
+                  if (project.appStoreLink != null) ...[
+                    IconButton(
+                      onPressed: () => _launchUrl(project.appStoreLink!),
+                      icon: const FaIcon(FontAwesomeIcons.appStore, size: 22),
+                      color: context.colorScheme.onSurface,
+                      tooltip: "App Store",
+                    ),
+                  ],
+                  if (project.demoLink != null) ...[
+                    IconButton(
+                      onPressed: () => _launchUrl(project.demoLink!),
+                      icon: const FaIcon(
+                        FontAwesomeIcons.mobileScreen,
+                        size: 20,
+                      ),
+                      color: context.colorScheme.onSurface,
+                      tooltip: "Live Demo",
+                    ),
+                  ],
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     );

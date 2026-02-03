@@ -22,6 +22,7 @@ class MainApp extends ConsumerWidget {
     final themeMode = ref.watch(appThemeControllerProvider);
 
     return MaterialApp(
+      title: "Mohamed Adel Portfolio",
       debugShowCheckedModeBanner: false,
       locale: Locale(locale.value ?? 'en'),
       localizationsDelegates: [

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../app_text_styles.dart';
 import '../../constants/appbar_menu_items.dart';
@@ -51,10 +52,15 @@ class AppBarLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Icon(
-      Icons.flutter_dash_outlined,
-      size: 50,
+      FontAwesomeIcons.flutter,
+      size: 40,
       color: AppColors.primaryColor,
     );
+    /*  Image.asset(
+      "assets/images/my_icon.png",
+      height: 50,
+      // width: 50,
+    ); */
   }
 }
 

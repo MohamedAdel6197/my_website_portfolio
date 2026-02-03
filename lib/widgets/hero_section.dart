@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions.dart';
 import '../models/portfolio_data.dart';
+import '../style/app_colors.dart';
 import '../style/app_size.dart';
 
 class HeroSection extends StatelessWidget {
@@ -46,28 +47,33 @@ class _HeroImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Check if the current theme is dark
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final imagePath = isDark
-        ? 'assets/images/dark_mode.png'
-        : 'assets/images/light_mode.png';
+    final imagePath = 'assets/images/mhmd.jpg';
 
     return Container(
-      width: 300,
-      height: 300,
+      width: 320,
+      height: 320,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
+        // Gradient Border
+        gradient: isDark ? AppColors.accentGradient : AppColors.primaryGradient,
         boxShadow: [
           BoxShadow(
-            color: context.colorScheme.primary.withOpacity(0.2),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
+            color: AppColors.primaryColor.withOpacity(0.4),
+            blurRadius: 30,
+            spreadRadius: 10,
+            offset: const Offset(0, 5),
           ),
         ],
-        border: Border.all(
-          color: context.colorScheme.primary.withOpacity(0.5),
-          width: 4,
+      ),
+      padding: const EdgeInsets.all(4), // Border width
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            image: AssetImage(imagePath),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -95,43 +101,60 @@ class _HeroContent extends StatelessWidget {
           ? CrossAxisAlignment.start
           : CrossAxisAlignment.center,
       children: [
-        Text(
-          "Salut, I'm",
-          style: context.appTextStyles.titleMdMedium.copyWith(
-            color: context.colorScheme.primary,
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          decoration: BoxDecoration(
+            color: AppColors.primaryColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: AppColors.primaryColor.withOpacity(0.3)),
+          ),
+          child: Text(
+            "👋 Salut, I'm",
+            style: context.appTextStyles.titleMdMedium.copyWith(
+              color: AppColors.primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-        const Gap(10),
-        Text(
-          PortfolioData.name,
-          textAlign: context.isDesktop(context)
-              ? TextAlign.start
-              : TextAlign.center,
-          style: context.appTextStyles.titleLgBlod.copyWith(
-            fontSize: context.isMobile(context) ? 40 : 64,
-            height: 1.1,
+        const Gap(15),
+        ShaderMask(
+          shaderCallback: (bounds) => AppColors.primaryGradient.createShader(
+            Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+          ),
+          child: Text(
+            PortfolioData.name,
+            textAlign: context.isDesktop(context)
+                ? TextAlign.start
+                : TextAlign.center,
+            style: context.appTextStyles.titleLgBlod.copyWith(
+              fontSize: context.isMobile(context) ? 48 : 72,
+              height: 1.0,
+              color: Colors.white, // Required for ShaderMask
+            ),
           ),
         ),
         const Gap(10),
         Text(
           PortfolioData.title,
           style: context.appTextStyles.titleMdMedium.copyWith(
-            color: context.colorScheme.onSurface.withOpacity(0.7),
-            fontSize: 24,
+            color: context.colorScheme.onSurface.withOpacity(0.8),
+            fontSize: 26,
+            fontWeight: FontWeight.w300,
           ),
         ),
         const Gap(30),
         Wrap(
-          spacing: 20,
-          runSpacing: 10,
+          spacing: 15,
+          runSpacing: 15,
           alignment: context.isDesktop(context)
               ? WrapAlignment.start
               : WrapAlignment.center,
           children: [
             _ContactChip(
               icon: Icons.email_outlined,
-              label: PortfolioData.email,
+              label: "Email Me",
               onTap: () => _launchUrl("mailto:${PortfolioData.email}"),
+              isPrimary: true,
             ),
             _ContactChip(
               icon: FontAwesomeIcons.linkedin,
@@ -145,11 +168,32 @@ class _HeroContent extends StatelessWidget {
             ),
           ],
         ),
-        const Gap(20),
-        Text(
-          "${PortfolioData.location} • ${PortfolioData.phone}",
-          style: context.appTextStyles.bodyMdMedium.copyWith(
-            color: context.colorScheme.onSurface.withOpacity(0.5),
+        const Gap(30),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          decoration: BoxDecoration(
+            color: context.colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 10,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.location_on_outlined, color: AppColors.secondaryColor),
+              const Gap(8),
+              Text(
+                "${PortfolioData.location} • ${PortfolioData.phone}",
+                style: context.appTextStyles.bodyMdMedium.copyWith(
+                  color: context.colorScheme.onSurface.withOpacity(0.7),
+                ),
+              ),
+            ],
           ),
         ),
       ],
@@ -161,11 +205,13 @@ class _ContactChip extends StatelessWidget {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
+  final bool isPrimary;
 
   const _ContactChip({
     required this.icon,
     required this.label,
     required this.onTap,
+    this.isPrimary = false,
   });
 
   @override
@@ -174,17 +220,39 @@ class _ContactChip extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(50),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         decoration: BoxDecoration(
-          border: Border.all(color: context.colorScheme.outline),
+          gradient: isPrimary ? AppColors.primaryGradient : null,
+          color: isPrimary ? null : context.colorScheme.surface,
+          border: isPrimary
+              ? null
+              : Border.all(color: context.colorScheme.outline.withOpacity(0.3)),
           borderRadius: BorderRadius.circular(50),
+          boxShadow: [
+            if (isPrimary)
+              BoxShadow(
+                color: AppColors.primaryColor.withOpacity(0.3),
+                blurRadius: 15,
+                offset: const Offset(0, 5),
+              ),
+          ],
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 18, color: context.colorScheme.onSurface),
-            const Gap(8),
-            Text(label, style: context.appTextStyles.bodyMdMedium),
+            Icon(
+              icon,
+              size: 20,
+              color: isPrimary ? Colors.white : context.colorScheme.onSurface,
+            ),
+            const Gap(10),
+            Text(
+              label,
+              style: context.appTextStyles.bodyMdMedium.copyWith(
+                color: isPrimary ? Colors.white : context.colorScheme.onSurface,
+                fontWeight: isPrimary ? FontWeight.bold : FontWeight.w500,
+              ),
+            ),
           ],
         ),
       ),

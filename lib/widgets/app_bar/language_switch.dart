@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:my_website_portfolio/extensions.dart';
 
@@ -12,7 +13,30 @@ class AppBarLanguageToggle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(appLocaleControllerProvider);
-    return PopupMenuButton(
+    return GestureDetector(
+      onTap: () {
+        ref.read(appLocaleControllerProvider.notifier).changeLanguage();
+      },
+      child: Row(
+        children: [
+          Icon(
+            locale.value == 'en'
+                ? FontAwesomeIcons.globe
+                : FontAwesomeIcons.language,
+            color: context.colorScheme.onSurface,
+            size: 16,
+          ),
+          Gap(8),
+          Text(
+            locale.value == 'en' ? 'English' : 'عربي',
+            style: context.appTextStyles.bodyMdMedium,
+          ),
+          Gap(6),
+        ],
+      ),
+    );
+
+    /* PopupMenuButton(
       itemBuilder: (BuildContext context) {
         return [
           PopupMenuItem(
@@ -37,7 +61,7 @@ class AppBarLanguageToggle extends ConsumerWidget {
           Gap(6),
         ],
       ),
-    );
+    );*/
   }
 }
 

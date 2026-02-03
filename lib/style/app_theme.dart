@@ -7,134 +7,152 @@ class AppTheme {
   final String fontFamily;
 
   AppTheme({required this.fontFamily});
-  ThemeData get dark => ThemeData(
-    useMaterial3: true,
-    scaffoldBackgroundColor: AppColors.darkBackgroundColor,
-    appBarTheme: AppBarTheme(backgroundColor: AppColors.grey[900]),
+
+  // Reusable button style logic
+  WidgetStateProperty<Color?> get _primaryButtonBackgroundColor =>
+      WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.hovered) ||
+            states.contains(WidgetState.pressed)) {
+          return AppColors.primaryColor.withOpacity(0.8);
+        }
+        return AppColors.primaryColor;
+      });
+
+  WidgetStateProperty<BorderSide?> get _outlineButtonBorderSide =>
+      WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.hovered) ||
+            states.contains(WidgetState.pressed)) {
+          return BorderSide(color: AppColors.primaryColor.withOpacity(0.8));
+        }
+        return const BorderSide(color: AppColors.primaryColor);
+      });
+
+  // Dark Theme Definition
+  ThemeData get dark => _getThemeData(
     colorScheme: ColorScheme.dark(
       primary: AppColors.primaryColor,
-      secondary: AppColors.darkBackgroundColor,
+      secondary: AppColors.secondaryColor,
+      surface: AppColors.darkSurfaceColor,
       onSurface: AppColors.grey[100]!,
+      onSurfaceVariant: AppColors.grey[300],
+      outline: AppColors.grey[700],
+      tertiary: AppColors.tertiaryColor,
     ),
-  );
-
-  final _primaryButtonStates = WidgetStateProperty.resolveWith((states) {
-    if (states.contains(WidgetState.hovered) ||
-        states.contains(WidgetState.pressed)) {
-      return const Color(0xff561895).withValues(alpha: 0.7);
-    }
-    return AppColors.primaryColor;
-  });
-  final _outlineButtonStates = WidgetStateProperty.resolveWith((states) {
-    if (states.contains(WidgetState.hovered) ||
-        states.contains(WidgetState.pressed)) {
-      return BorderSide(color: const Color(0xff561895).withValues(alpha: 0.7));
-    }
-    return BorderSide(color: AppColors.primaryColor);
-  });
-
-  WidgetStatePropertyAll<TextStyle> get _darkElevatedButtonTextStyle =>
-      WidgetStatePropertyAll<TextStyle>(
-        TextStyle(
-          color: AppColors.grey[100],
-          fontFamily: fontFamily,
-          fontWeight: FontWeight.w500,
-        ),
-      );
-  WidgetStatePropertyAll<TextStyle> get _lightElevatedButtonTextStyle =>
-      WidgetStatePropertyAll<TextStyle>(
-        TextStyle(
-          color: AppColors.grey[100],
-          fontFamily: fontFamily,
-          fontWeight: FontWeight.w500,
-        ),
-      );
-  WidgetStatePropertyAll<TextStyle> get _darkOutlinedButtonTextStyle =>
-      WidgetStatePropertyAll<TextStyle>(
-        TextStyle(
-          color: AppColors.grey[100],
-          fontFamily: fontFamily,
-          fontWeight: FontWeight.w500,
-        ),
-      );
-  WidgetStatePropertyAll<TextStyle> get _lightOutlinedButtonTextStyle =>
-      WidgetStatePropertyAll<TextStyle>(
-        TextStyle(
-          color: AppColors.grey[800],
-          fontFamily: fontFamily,
-          fontWeight: FontWeight.w500,
-        ),
-      );
-
-  ThemeData get darkTheme => _getThemeData(
-    colorScheme: ColorScheme.dark(
-      primary: AppColors.primaryColor,
-      surface: AppColors.grey[850]!,
-      outline: AppColors.grey[800],
-      outlineVariant: AppColors.grey[700],
-      onSurface: AppColors.grey[300]!,
-      onSurfaceVariant: AppColors.grey[400],
-      tertiary: AppColors.grey[900],
-    ),
-    elevatedButtonTextStyle: _darkElevatedButtonTextStyle,
-    outlinedButtonTextStyle: _darkOutlinedButtonTextStyle,
     scaffoldBackgroundColor: AppColors.darkBackgroundColor,
-    appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.grey[900]!.withValues(alpha: 0.3),
-    ),
+    appBarBackgroundColor: AppColors.darkSurfaceColor.withOpacity(0.8),
+    elevatedButtonTextStyle: _elevatedButtonTextStyle,
+    outlinedButtonTextStyle: _outlinedButtonTextStyle,
+    cardColor: AppColors.darkSurfaceColor,
   );
 
+  // Light Theme Definition
   ThemeData get light => _getThemeData(
     colorScheme: ColorScheme.light(
       primary: AppColors.primaryColor,
-      surface: AppColors.grey[200]!,
+      secondary: AppColors.secondaryColor,
+      surface: AppColors.lightSurfaceColor,
+      onSurface: AppColors.grey[900]!,
+      onSurfaceVariant: AppColors.grey[700],
       outline: AppColors.grey[300],
-      outlineVariant: AppColors.grey[400],
-      onSurface: AppColors.grey[700]!,
-      onSurfaceVariant: AppColors.grey[600],
-      tertiary: AppColors.grey[900],
+      tertiary: AppColors.tertiaryColor,
     ),
-    elevatedButtonTextStyle: _lightElevatedButtonTextStyle,
-    outlinedButtonTextStyle: _lightOutlinedButtonTextStyle,
-    scaffoldBackgroundColor: AppColors.grey[100]!,
-    appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.grey[100]!.withValues(alpha: 0.1),
-    ),
+    scaffoldBackgroundColor: AppColors.lightBackgroundColor,
+    appBarBackgroundColor: AppColors.lightSurfaceColor.withOpacity(0.8),
+    elevatedButtonTextStyle: _elevatedButtonTextStyle,
+    outlinedButtonTextStyle: _outlinedButtonTextStyle,
+    cardColor: AppColors.lightSurfaceColor,
   );
 
+  // Shared Text Styles for Buttons
+  WidgetStatePropertyAll<TextStyle> get _elevatedButtonTextStyle =>
+      WidgetStatePropertyAll<TextStyle>(
+        TextStyle(
+          color: Colors.white,
+          fontFamily: fontFamily,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
+      );
+
+  WidgetStatePropertyAll<TextStyle> get _outlinedButtonTextStyle =>
+      WidgetStatePropertyAll<TextStyle>(
+        TextStyle(
+          color: AppColors.primaryColor,
+          fontFamily: fontFamily,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
+      );
+
+  // Theme Data Construction Helper
   ThemeData _getThemeData({
     required ColorScheme colorScheme,
+    required Color scaffoldBackgroundColor,
+    required Color appBarBackgroundColor,
     required WidgetStateProperty<TextStyle> elevatedButtonTextStyle,
     required WidgetStateProperty<TextStyle> outlinedButtonTextStyle,
-    required Color scaffoldBackgroundColor,
-    required AppBarTheme appBarTheme,
+    required Color cardColor,
   }) {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: colorScheme,
       fontFamily: fontFamily,
+      colorScheme: colorScheme,
       scaffoldBackgroundColor: scaffoldBackgroundColor,
-      appBarTheme: appBarTheme,
+      cardColor: cardColor,
+
+      // AppBar Theme
+      appBarTheme: AppBarTheme(
+        backgroundColor: appBarBackgroundColor,
+        scrolledUnderElevation: 0,
+        elevation: 0,
+        iconTheme: IconThemeData(color: colorScheme.onSurface),
+        titleTextStyle: TextStyle(
+          color: colorScheme.onSurface,
+          fontFamily: fontFamily,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+
+      // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          fixedSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
-          backgroundColor: _primaryButtonStates,
+          fixedSize: const WidgetStatePropertyAll(
+            Size.fromHeight(48),
+          ), // Slightly taller buttons
+          backgroundColor: _primaryButtonBackgroundColor,
+          foregroundColor: const WidgetStatePropertyAll(Colors.white),
           padding: WidgetStatePropertyAll(
-            EdgeInsets.symmetric(horizontal: Insets.largePadding, vertical: 10),
+            EdgeInsets.symmetric(horizontal: Insets.largePadding, vertical: 0),
           ),
           textStyle: elevatedButtonTextStyle,
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+          elevation: const WidgetStatePropertyAll(4), // Add subtle shadow
+          shadowColor: WidgetStatePropertyAll(
+            AppColors.primaryColor.withOpacity(0.3),
+          ),
         ),
       ),
+
+      // Outlined Button Theme
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
-          fixedSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
-          side: _outlineButtonStates,
+          fixedSize: const WidgetStatePropertyAll(Size.fromHeight(48)),
+          side: _outlineButtonBorderSide,
           padding: WidgetStatePropertyAll(
-            EdgeInsets.symmetric(horizontal: Insets.largePadding, vertical: 10),
+            EdgeInsets.symmetric(horizontal: Insets.largePadding, vertical: 0),
           ),
           textStyle: outlinedButtonTextStyle,
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
         ),
       ),
+
+      // Icon Theme
+      iconTheme: IconThemeData(color: colorScheme.onSurface, size: 24),
     );
   }
 }
