@@ -93,11 +93,24 @@ class _EducationCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 20),
       child: Row(
         children: [
-          Image.asset(
-            "assets/images/aast-logo.png",
-            height: 100,
-            fit: BoxFit.cover,
-          ),
+          context.colorScheme.brightness == Brightness.light
+              ? Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.asset(
+                    "assets/images/aast-logo.png",
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              : Image.asset(
+                  "assets/images/aast-logo.png",
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
           const Gap(20),
           Expanded(
             child: Column(
@@ -140,6 +153,7 @@ class _EducationCard extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+                      const Gap(6),
                       Text(
                         "${LocaleKeys.gradeLabel}: ${education.graduationProjectGrade}",
                         style: context.appTextStyles.bodyMdMedium,

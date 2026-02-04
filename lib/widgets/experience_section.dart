@@ -75,17 +75,23 @@ class _ExperienceCard extends StatelessWidget {
               Container(
                 width: 70,
                 height: 70,
+                padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.darkBackgroundColor,
-                  image: DecorationImage(
-                    image: AssetImage(experience.companyImage),
-                    fit: BoxFit.contain,
-                  ),
+                  image: experience.companyImage == "assets/images/aqtar.png"
+                      ? null
+                      : DecorationImage(
+                          image: AssetImage(experience.companyImage),
+                          fit: BoxFit.contain,
+                        ),
                   border: Border.all(
                     color: context.colorScheme.outline.withValues(alpha: 0.4),
                   ),
                 ),
+                child: experience.companyImage != "assets/images/aqtar.png"
+                    ? null
+                    : Image.asset(experience.companyImage, fit: BoxFit.contain),
               ),
               const Gap(16),
               Expanded(
