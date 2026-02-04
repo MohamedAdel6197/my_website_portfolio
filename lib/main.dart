@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:localingo/localingo.dart';
 
 import 'home_page.dart';
-import 'shared/app_locale_controller.dart';
-import 'shared/app_theme_controller.dart';
+import 'providers/app_locale_provider.dart';
+import 'providers/app_theme_provider.dart' hide AppTheme;
 import 'style/app_colors.dart';
 import 'style/app_theme.dart';
 
@@ -21,8 +21,8 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(appLocaleControllerProvider);
-    final themeMode = ref.watch(appThemeControllerProvider);
+    final locale = ref.watch(appLocaleProvider);
+    final themeMode = ref.watch(appThemeProvider);
     Localingo.setNavigatorKey(_navigatorKey);
     return MaterialApp(
       navigatorKey: _navigatorKey,

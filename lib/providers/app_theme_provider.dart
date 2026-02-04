@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'app_shared_pref.dart';
+import '../shared/app_shared_pref.dart';
 
-part 'app_theme_controller.g.dart';
+part 'app_theme_provider.g.dart';
 
 @riverpod
-class AppThemeController extends _$AppThemeController {
+class AppTheme extends _$AppTheme {
   @override
   Future<ThemeMode> build() async {
     final theme = await AppSharedPref.getTheme();

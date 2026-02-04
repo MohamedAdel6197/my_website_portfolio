@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:my_website_portfolio/extensions.dart';
 
-import '../../shared/app_locale_controller.dart';
+import '../../providers/app_locale_provider.dart';
 import '../seo_text.dart';
 
 class AppBarLanguageToggle extends ConsumerWidget {
@@ -12,10 +12,10 @@ class AppBarLanguageToggle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(appLocaleControllerProvider);
+    final locale = ref.watch(appLocaleProvider);
     return GestureDetector(
       onTap: () {
-        ref.read(appLocaleControllerProvider.notifier).changeLanguage();
+        ref.read(appLocaleProvider.notifier).changeLanguage();
       },
       child: Row(
         children: [

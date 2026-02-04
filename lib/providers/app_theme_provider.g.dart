@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_theme_controller.dart';
+part of 'app_theme_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,34 +9,33 @@ part of 'app_theme_controller.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(AppThemeController)
-final appThemeControllerProvider = AppThemeControllerProvider._();
+@ProviderFor(AppTheme)
+final appThemeProvider = AppThemeProvider._();
 
-final class AppThemeControllerProvider
-    extends $AsyncNotifierProvider<AppThemeController, ThemeMode> {
-  AppThemeControllerProvider._()
+final class AppThemeProvider
+    extends $AsyncNotifierProvider<AppTheme, ThemeMode> {
+  AppThemeProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'appThemeControllerProvider',
+        name: r'appThemeProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$appThemeControllerHash();
+  String debugGetCreateSourceHash() => _$appThemeHash();
 
   @$internal
   @override
-  AppThemeController create() => AppThemeController();
+  AppTheme create() => AppTheme();
 }
 
-String _$appThemeControllerHash() =>
-    r'13b45b7bd40b68edd89f138ecab0887cbbd8cb12';
+String _$appThemeHash() => r'5a8ab23be208875229255b83120860ac6fc31078';
 
-abstract class _$AppThemeController extends $AsyncNotifier<ThemeMode> {
+abstract class _$AppTheme extends $AsyncNotifier<ThemeMode> {
   FutureOr<ThemeMode> build();
   @$mustCallSuper
   @override

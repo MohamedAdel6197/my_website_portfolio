@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_locale_controller.dart';
+part of 'app_locale_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,34 +9,33 @@ part of 'app_locale_controller.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(AppLocaleController)
-final appLocaleControllerProvider = AppLocaleControllerProvider._();
+@ProviderFor(AppLocale)
+final appLocaleProvider = AppLocaleProvider._();
 
-final class AppLocaleControllerProvider
-    extends $AsyncNotifierProvider<AppLocaleController, String> {
-  AppLocaleControllerProvider._()
+final class AppLocaleProvider
+    extends $AsyncNotifierProvider<AppLocale, String> {
+  AppLocaleProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'appLocaleControllerProvider',
+        name: r'appLocaleProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$appLocaleControllerHash();
+  String debugGetCreateSourceHash() => _$appLocaleHash();
 
   @$internal
   @override
-  AppLocaleController create() => AppLocaleController();
+  AppLocale create() => AppLocale();
 }
 
-String _$appLocaleControllerHash() =>
-    r'd6743039b51db75165595583b6402dfbb1d0f126';
+String _$appLocaleHash() => r'feea1c027fcadf66248f3d386cb822042c680c2d';
 
-abstract class _$AppLocaleController extends $AsyncNotifier<String> {
+abstract class _$AppLocale extends $AsyncNotifier<String> {
   FutureOr<String> build();
   @$mustCallSuper
   @override

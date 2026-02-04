@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DrawerIcon extends StatefulWidget {
+import '../../providers/drawer_provider.dart';
+
+class DrawerIcon extends ConsumerStatefulWidget {
   const DrawerIcon({super.key});
 
   @override
-  State<DrawerIcon> createState() => _DrawerIconState();
+  ConsumerState<DrawerIcon> createState() => _DrawerIconState();
 }
 
-class _DrawerIconState extends State<DrawerIcon>
+class _DrawerIconState extends ConsumerState<DrawerIcon>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
-
-  bool isOpen = false;
 
   @override
   void initState() {
@@ -25,15 +26,30 @@ class _DrawerIconState extends State<DrawerIcon>
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // Listen to the drawer state from the provider
+    ref.listen(drawerStateProvider, (previous, next) {
+      if (next) {
+        controller.forward();
+      } else {
+        controller.reverse();
+      }
+    });
+
     return IconButton(
       icon: AnimatedIcon(icon: AnimatedIcons.menu_close, progress: animation),
       onPressed: () {
-        Scaffold.of(context).openDrawer();
-        setState(() {
-          isOpen ? controller.reverse() : controller.forward();
-          isOpen = !isOpen;
-        });
+        if (Scaffold.of(context).isDrawerOpen) {
+          Navigator.pop(context);
+        } else {
+          Scaffold.of(context).openDrawer();
+        }
       },
     );
   }

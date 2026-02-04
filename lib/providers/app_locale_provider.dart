@@ -1,11 +1,11 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'app_shared_pref.dart';
+import '../shared/app_shared_pref.dart';
 
-part 'app_locale_controller.g.dart';
+part 'app_locale_provider.g.dart';
 
 @riverpod
-class AppLocaleController extends _$AppLocaleController {
+class AppLocale extends _$AppLocale {
   @override
   FutureOr<String> build() {
     return AppSharedPref.getLocale();
