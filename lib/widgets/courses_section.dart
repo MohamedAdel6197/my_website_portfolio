@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions.dart';
 import '../locale_keys.dart';
@@ -8,8 +7,8 @@ import '../models/portfolio_data.dart';
 import '../style/app_colors.dart';
 import '../style/app_size.dart';
 
-class ExperienceSection extends StatelessWidget {
-  const ExperienceSection({super.key});
+class CoursesSection extends StatelessWidget {
+  const CoursesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +24,34 @@ class ExperienceSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                LocaleKeys.professionalExperience,
+                LocaleKeys.courses,
                 style: context.appTextStyles.titleLgBlod,
               ),
               const Gap(30),
-              Column(
-                children: PortfolioData.experience
-                    .map((e) => _ExperienceCard(e))
-                    .toList(),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final isDesktop = context.isDesktop(context);
+                  if (isDesktop) {
+                    return Wrap(
+                      spacing: 24,
+                      runSpacing: 24,
+                      children: PortfolioData.courses
+                          .map(
+                            (c) => SizedBox(
+                              width: (constraints.maxWidth - 24) / 2,
+                              child: _CourseCard(c),
+                            ),
+                          )
+                          .toList(),
+                    );
+                  } else {
+                    return Column(
+                      children: PortfolioData.courses
+                          .map((c) => _CourseCard(c))
+                          .toList(),
+                    );
+                  }
+                },
               ),
             ],
           ),
@@ -42,9 +61,9 @@ class ExperienceSection extends StatelessWidget {
   }
 }
 
-class _ExperienceCard extends StatelessWidget {
-  final Experience experience;
-  const _ExperienceCard(this.experience);
+class _CourseCard extends StatelessWidget {
+  final Course course;
+  const _CourseCard(this.course);
 
   @override
   Widget build(BuildContext context) {
@@ -73,94 +92,49 @@ class _ExperienceCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 70,
-                height: 70,
-                padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.darkBackgroundColor,
-                  image: experience.companyImage == "assets/images/aqtar.png"
-                      ? null
-                      : DecorationImage(
-                          image: AssetImage(experience.companyImage),
-                          fit: BoxFit.contain,
-                        ),
-                  border: Border.all(
-                    color: context.colorScheme.outline.withValues(alpha: 0.4),
-                  ),
-                ),
-                child: experience.companyImage != "assets/images/aqtar.png"
-                    ? null
-                    : Image.asset(experience.companyImage, fit: BoxFit.contain),
-              ),
-              const Gap(16),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      experience.role,
-                      style: context.appTextStyles.titleMdMedium.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                        color: context.colorScheme.onSurface,
-                      ),
-                    ),
-                    const Gap(8),
-                    Row(
-                      children: [
-                        Text(
-                          experience.company,
-                          style: context.appTextStyles.titleSmBold.copyWith(
-                            color: AppColors.primaryColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                        const Gap(6),
-                        InkWell(
-                          onTap: () =>
-                              launchUrl(Uri.parse(experience.companyLink)),
-                          child: Icon(
-                            Icons.launch,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                child: Text(
+                  course.title,
+                  style: context.appTextStyles.titleMdMedium.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: context.colorScheme.onSurface,
+                  ),
                 ),
               ),
               if (isDesktop) ...[
                 const Gap(16),
-                _DateBadge(date: experience.period),
+                _DateBadge(date: course.period),
               ],
             ],
           ),
-          if (!isDesktop) ...[
-            const Gap(12),
-            _DateBadge(date: experience.period),
-          ],
+          if (!isDesktop) ...[const Gap(12), _DateBadge(date: course.period)],
           const Gap(16),
           Divider(
             color: context.colorScheme.outlineVariant.withValues(alpha: 0.3),
           ),
           const Gap(16),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
-                Icons.description_outlined,
+                Icons.person_outline,
                 size: 18,
                 color: context.colorScheme.onSurfaceVariant,
               ),
               const Gap(8),
+              Text(
+                "${LocaleKeys.instructor} : ",
+                style: context.appTextStyles.bodyMdMedium.copyWith(
+                  color: context.colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               Expanded(
                 child: Text(
-                  experience.description,
-                  style: context.appTextStyles.bodyLgMedium.copyWith(
-                    color: context.colorScheme.onSurface.withValues(alpha: 0.8),
-                    height: 1.5,
+                  course.instructor,
+                  style: context.appTextStyles.bodyMdMedium.copyWith(
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -176,7 +150,7 @@ class _ExperienceCard extends StatelessWidget {
               ),
               const Gap(8),
               Text(
-                experience.location,
+                course.location,
                 style: context.appTextStyles.bodyMdMedium.copyWith(
                   color: context.colorScheme.onSurfaceVariant,
                   fontStyle: FontStyle.italic,

@@ -8,7 +8,6 @@ import '../../constants/appbar_menu_items.dart';
 import '../../extensions.dart';
 import '../../locale_keys.dart';
 import '../../shared/app_theme_controller.dart';
-import '../../style/app_colors.dart';
 import '../../style/app_size.dart';
 import 'drawer_icon.dart';
 import 'language_switch.dart';
@@ -68,7 +67,7 @@ class AppBarLogo extends StatelessWidget {
     return Icon(
       FontAwesomeIcons.flutter,
       size: context.isDesktop(context) ? 40 : 30,
-      color: AppColors.primaryColor,
+      color: Colors.blue,
     );
   }
 }

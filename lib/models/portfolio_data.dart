@@ -25,6 +25,7 @@ class PortfolioData {
   static List<Experience> get experience => [
     Experience(
       company: LocaleKeys.qabed,
+      companyLink: "https://www.qabed.com/",
       companyImage: "assets/images/qabed.jpg",
       role: LocaleKeys.qabedRole,
       period: LocaleKeys.qabedPeriod,
@@ -33,6 +34,7 @@ class PortfolioData {
     ),
     Experience(
       company: LocaleKeys.aqtar,
+      companyLink: "https://aqtardesign.com/",
       companyImage: "assets/images/aqtar.png",
       role: LocaleKeys.aqtarRole,
       period: LocaleKeys.aqtarPeriod,
@@ -74,6 +76,114 @@ class PortfolioData {
   ];
 
   static String get militaryService => LocaleKeys.militaryServiceStatus;
+
+  static List<Course> get courses => [
+    Course(
+      title: LocaleKeys.flutterDartCourse,
+      period: "Oct 2021 – Feb 2022",
+      location: LocaleKeys.offline,
+      instructor: LocaleKeys.abdallahMansour,
+    ),
+    Course(
+      title: LocaleKeys.flutterAdvancedMvvm,
+      period: "May 2024 – Sep 2024",
+      location: LocaleKeys.offline,
+      instructor: "${LocaleKeys.minaFarid} && ${LocaleKeys.ismailElmogy}",
+    ),
+    Course(
+      title: LocaleKeys.solidPrinciples,
+      period: "Jan 2025 – Mar 2025",
+      location: LocaleKeys.offline,
+      instructor: LocaleKeys.baselMoustafa,
+    ),
+    Course(
+      title: LocaleKeys.paymentIntegration,
+      period: "May 2025 – Jul 2025",
+      location: LocaleKeys.offline,
+      instructor: LocaleKeys.tharwatSamy,
+    ),
+    Course(
+      title: LocaleKeys.cleanArchDeepDive,
+      period: "Aug 2025 – Nov 2025",
+      location: LocaleKeys.offline,
+      instructor: LocaleKeys.tharwatSamy,
+    ),
+    Course(
+      title: LocaleKeys.flutterMultiModular,
+      period: "Nov 2025 – Jan 2026",
+      location: LocaleKeys.offline,
+      instructor: LocaleKeys.minaFaredAlt,
+    ),
+  ];
+
+  static List<SkillCategory> get skills => [
+    SkillCategory(
+      title: LocaleKeys.mobileDevelopment,
+      skills: [
+        LocaleKeys.flutterCoreWidgets,
+        LocaleKeys.responsiveAdaptiveUi,
+        LocaleKeys.materialCupertinoDesign,
+        LocaleKeys.customWidgetsAnimations,
+        LocaleKeys.rtlLocalization,
+      ],
+    ),
+    SkillCategory(
+      title: LocaleKeys.paymentMonetization,
+      skills: [
+        LocaleKeys.stripeIntegration,
+        LocaleKeys.paypalIntegration,
+        LocaleKeys.revenuecatIap,
+        LocaleKeys.runtimeSubscriptionPayments,
+        LocaleKeys.purchaseValidation,
+      ],
+    ),
+    SkillCategory(
+      title: LocaleKeys.stateManagement,
+      skills: [LocaleKeys.blocCubit, LocaleKeys.providerRiverpod],
+    ),
+    SkillCategory(
+      title: LocaleKeys.architectureDesign,
+      skills: [
+        LocaleKeys.solidDesignPrinciples,
+        LocaleKeys.mvvmCleanArchitecture,
+        LocaleKeys.featureBasedStructure,
+      ],
+    ),
+
+    SkillCategory(
+      title: LocaleKeys.backendApiServices,
+      skills: [
+        LocaleKeys.restfulApiIntegration,
+        LocaleKeys.postmanExperience,
+        LocaleKeys.paginationFilteringSearch,
+      ],
+    ),
+    SkillCategory(
+      title: LocaleKeys.backgroundTasksNotifications,
+      skills: [
+        LocaleKeys.localNotifications,
+        LocaleKeys.scheduledDailyNotifications,
+        LocaleKeys.workmanagerBackgroundServices,
+      ],
+    ),
+    SkillCategory(
+      title: LocaleKeys.mediaFileHandling,
+      skills: [
+        LocaleKeys.advancedPdfHandling,
+        LocaleKeys.audioPlaybackManagement,
+        LocaleKeys.backgroundMediaHandling,
+        LocaleKeys.offlineContentCaching,
+      ],
+    ),
+    SkillCategory(
+      title: LocaleKeys.appDeployment,
+      skills: [
+        LocaleKeys.googlePlayDeployment,
+        LocaleKeys.appleAppStoreDeployment,
+        LocaleKeys.webHostingDeployment,
+      ],
+    ),
+  ];
 }
 
 class Education {
@@ -94,6 +204,7 @@ class Education {
 
 class Experience {
   final String company;
+  final String companyLink;
   final String companyImage;
   final String role;
   final String period;
@@ -107,6 +218,7 @@ class Experience {
     required this.period,
     required this.location,
     required this.description,
+    required this.companyLink,
   });
 }
 
@@ -130,4 +242,25 @@ class Project {
     this.appStoreLink,
     this.demoLink,
   });
+}
+
+class Course {
+  final String title;
+  final String period;
+  final String location;
+  final String instructor;
+
+  const Course({
+    required this.title,
+    required this.period,
+    required this.location,
+    required this.instructor,
+  });
+}
+
+class SkillCategory {
+  final String title;
+  final List<String> skills;
+
+  const SkillCategory({required this.title, required this.skills});
 }
