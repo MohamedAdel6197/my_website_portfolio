@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../extensions.dart';
+import '../locale_keys.dart';
 import '../models/portfolio_data.dart';
 import '../style/app_size.dart';
 
@@ -21,12 +22,15 @@ class EducationSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Education", style: context.appTextStyles.titleLgBlod),
+              Text(
+                LocaleKeys.education,
+                style: context.appTextStyles.titleLgBlod,
+              ),
               const Gap(30),
               ...PortfolioData.education.map((e) => _EducationCard(e)),
               const Gap(40),
               Text(
-                "Military Service",
+                LocaleKeys.militaryService,
                 style: context.appTextStyles.titleLgBlod,
               ),
               const Gap(20),
@@ -69,7 +73,7 @@ class _EducationCard extends StatelessWidget {
           ),
           const Gap(8),
           Text(
-            "Grade: ${education.grade}",
+            "${LocaleKeys.gradeLabel}: ${education.grade}",
             style: context.appTextStyles.bodyMdMedium.copyWith(
               color: context.colorScheme.onSurfaceVariant,
             ),
@@ -87,13 +91,13 @@ class _EducationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Graduation Project: ${education.graduationProject}",
+                  "${LocaleKeys.graduationProjectLabel}: ${education.graduationProject}",
                   style: context.appTextStyles.bodyMdMedium.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
-                  "Grade: ${education.graduationProjectGrade}",
+                  "${LocaleKeys.gradeLabel}: ${education.graduationProjectGrade}",
                   style: context.appTextStyles.bodyMdMedium,
                 ),
               ],

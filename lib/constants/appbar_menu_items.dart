@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../locale_keys.dart';
 import '../router/app_routes.dart';
 
 class AppbarMenuItems {
   static List<MenuItem> getMenuItems(BuildContext context) {
     return [
-      MenuItem("Home", AppRoutes.home),
-      MenuItem("contact Me", AppRoutes.contactMe),
-      MenuItem("Courses", AppRoutes.courses),
-      MenuItem("Projects", AppRoutes.projects),
+      MenuItem(LocaleKeys.home, AppRoutes.home),
+      MenuItem(LocaleKeys.contactMe, AppRoutes.contactMe),
+      MenuItem(LocaleKeys.courses, AppRoutes.courses),
+      MenuItem(LocaleKeys.projects, AppRoutes.projects),
     ];
   }
 }

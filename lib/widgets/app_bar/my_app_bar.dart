@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../app_text_styles.dart';
 import '../../constants/appbar_menu_items.dart';
 import '../../extensions.dart';
+import '../../locale_keys.dart';
 import '../../shared/app_theme_controller.dart';
 import '../../style/app_colors.dart';
 import '../../style/app_size.dart';
@@ -70,7 +71,10 @@ class AppBarTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final width = MediaQuery.of(context).size.width;
-    return Text("Mohamed Adel", style: context.appTextStyles.titleLgBlod);
+    return Text(
+      LocaleKeys.mohamedAdel,
+      style: context.appTextStyles.titleLgBlod,
+    );
   }
 }
 
@@ -133,16 +137,16 @@ class AppBarThemeToggle extends ConsumerWidget {
     final themeMode = ref.watch(appThemeControllerProvider);
     final isLight = themeMode.value == ThemeMode.light;
     return Switch(
-      value: !isLight, // Active (true) means Dark Mode
+      value: !isLight,
       onChanged: (value) {
         ref.read(appThemeControllerProvider.notifier).toggleTheme();
       },
-      activeColor: context.colorScheme.primary,
+      activeThumbColor: context.colorScheme.primary,
       thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
         Set<WidgetState> states,
       ) {
         if (states.contains(WidgetState.selected)) {
-          return const Icon(Icons.dark_mode, size: 16); // Dark mode icon
+          return const Icon(Icons.dark_mode, size: 16);
         }
         return const Icon(
           Icons.light_mode,

@@ -10,7 +10,6 @@ import 'style/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(ProviderScope(child: MainApp()));
 }
 
@@ -23,7 +22,7 @@ class MainApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(appLocaleControllerProvider);
     final themeMode = ref.watch(appThemeControllerProvider);
-
+    Localingo.setNavigatorKey(_navigatorKey);
     return MaterialApp(
       navigatorKey: _navigatorKey,
       title: "Mohamed Adel Portfolio",

@@ -30,6 +30,7 @@ class _DrawerIconState extends State<DrawerIcon>
     return IconButton(
       icon: AnimatedIcon(icon: AnimatedIcons.menu_close, progress: animation),
       onPressed: () {
+        Scaffold.of(context).openDrawer();
         setState(() {
           isOpen ? controller.reverse() : controller.forward();
           isOpen = !isOpen;

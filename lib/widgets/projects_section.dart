@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions.dart';
+import '../locale_keys.dart';
 import '../models/portfolio_data.dart';
 import '../style/app_colors.dart';
 import '../style/app_size.dart';
@@ -26,7 +27,10 @@ class ProjectsSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Projects", style: context.appTextStyles.titleLgBlod),
+              Text(
+                LocaleKeys.projects,
+                style: context.appTextStyles.titleLgBlod,
+              ),
               const Gap(30),
               LayoutBuilder(
                 builder: (context, constraints) {

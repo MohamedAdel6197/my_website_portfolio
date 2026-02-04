@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions.dart';
+import '../locale_keys.dart';
 import '../models/portfolio_data.dart';
 import '../style/app_size.dart';
 
@@ -36,7 +37,7 @@ class ContactSection extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "Get in Touch",
+                LocaleKeys.getInTouch,
                 style: context.appTextStyles.titleLgBlod.copyWith(
                   color: Colors.white,
                 ),
@@ -61,23 +62,26 @@ class ContactSection extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () => _launchUrl(PortfolioData.githubUrl),
-                    icon: Icon(FontAwesomeIcons.github, color: Colors.white),
-                    tooltip: "GitHub",
+                    icon: const Icon(
+                      FontAwesomeIcons.github,
+                      color: Colors.white,
+                    ),
+                    tooltip: LocaleKeys.github,
                   ),
                   const Gap(20),
                   IconButton(
                     onPressed: () => _launchUrl(PortfolioData.linkedinUrl),
-                    icon: Icon(
+                    icon: const Icon(
                       FontAwesomeIcons.linkedin,
                       color: Colors.white,
-                    ), // Use real icons if available
-                    tooltip: "LinkedIn",
+                    ),
+                    tooltip: LocaleKeys.linkedIn,
                   ),
                 ],
               ),
               const Gap(40),
               Text(
-                "© ${DateTime.now().year} ${PortfolioData.name}. All rights reserved.",
+                "© ${DateTime.now().year} ${PortfolioData.name}. ${LocaleKeys.copyright}",
                 style: context.appTextStyles.bodyMdMedium.copyWith(
                   color: Colors.white38,
                 ),

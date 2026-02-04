@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../extensions.dart';
+import '../locale_keys.dart';
 import '../models/portfolio_data.dart';
 import '../style/app_colors.dart';
 import '../style/app_size.dart';
@@ -23,7 +24,7 @@ class ExperienceSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Professional Experience",
+                LocaleKeys.professionalExperience,
                 style: context.appTextStyles.titleLgBlod,
               ),
               const Gap(30),

@@ -12,6 +12,8 @@ class LocaleKeys {
   static String get aboutMe => 'about_me'.tr();
   static String get projects => 'projects'.tr();
   static String get english => 'english'.tr();
+  static String get home => 'home'.tr();
+  static String get salutIm => 'salut_im'.tr();
   static String get arabic => 'arabic'.tr();
   static String get contactMe => 'contact_me'.tr();
   static String get professionalExperience => 'professional_experience'.tr();
@@ -22,6 +24,8 @@ class LocaleKeys {
   static String get location => 'location'.tr();
   static String get objective => 'objective'.tr();
   static String get emailMe => 'email_me'.tr();
+  static String get linkedIn => 'linkedIn'.tr();
+  static String get github => 'github'.tr();
   static String get callMe => 'call_me'.tr();
   static String get whatsappMe => 'whatsapp_me'.tr();
   static String get viewProject => 'view_project'.tr();
@@ -56,4 +60,8 @@ class LocaleKeys {
   static String get graduationProject => 'graduation_project'.tr();
   static String get graduationProjectGrade => 'graduation_project_grade'.tr();
   static String get militaryServiceStatus => 'military_service_status'.tr();
+  static String get gradeLabel => 'grade_label'.tr();
+  static String get graduationProjectLabel => 'graduation_project_label'.tr();
+  static String get getInTouch => 'get_in_touch'.tr();
+  static String get copyright => 'copyright'.tr();
 }

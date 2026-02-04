@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions.dart';
+import '../locale_keys.dart';
 import '../models/portfolio_data.dart';
 import '../style/app_colors.dart';
 import '../style/app_size.dart';
@@ -110,12 +111,20 @@ class _HeroContent extends StatelessWidget {
               color: AppColors.primaryColor.withValues(alpha: 0.3),
             ),
           ),
-          child: Text(
-            "👋 Salut, I'm",
-            style: context.appTextStyles.titleMdMedium.copyWith(
-              color: AppColors.primaryColor,
-              fontWeight: FontWeight.bold,
-            ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.waving_hand, color: Colors.amber),
+              const Gap(10),
+              Text(
+                // "👋 Salut, I'm",
+                LocaleKeys.salutIm,
+                style: context.appTextStyles.titleMdMedium.copyWith(
+                  color: AppColors.primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
         const Gap(15),
@@ -124,7 +133,7 @@ class _HeroContent extends StatelessWidget {
             Rect.fromLTWH(0, 0, bounds.width, bounds.height),
           ),
           child: Text(
-            PortfolioData.name,
+            LocaleKeys.name,
             textAlign: context.isDesktop(context)
                 ? TextAlign.start
                 : TextAlign.center,
@@ -137,7 +146,7 @@ class _HeroContent extends StatelessWidget {
         ),
         const Gap(10),
         Text(
-          PortfolioData.title,
+          LocaleKeys.title,
           style: context.appTextStyles.titleMdMedium.copyWith(
             color: context.colorScheme.onSurface.withValues(alpha: 0.8),
             fontSize: 26,
@@ -154,18 +163,18 @@ class _HeroContent extends StatelessWidget {
           children: [
             _ContactChip(
               icon: Icons.email_outlined,
-              label: "Email Me",
+              label: LocaleKeys.emailMe,
               onTap: () => _launchUrl("mailto:${PortfolioData.email}"),
               isPrimary: true,
             ),
             _ContactChip(
               icon: FontAwesomeIcons.linkedin,
-              label: "LinkedIn",
+              label: LocaleKeys.linkedIn,
               onTap: () => _launchUrl(PortfolioData.linkedinUrl),
             ),
             _ContactChip(
               icon: FontAwesomeIcons.github,
-              label: "GitHub",
+              label: LocaleKeys.github,
               onTap: () => _launchUrl(PortfolioData.githubUrl),
             ),
           ],
@@ -190,7 +199,36 @@ class _HeroContent extends StatelessWidget {
               Icon(Icons.location_on_outlined, color: AppColors.secondaryColor),
               const Gap(8),
               Text(
-                "${PortfolioData.location} • ${PortfolioData.phone}",
+                LocaleKeys.location,
+                style: context.appTextStyles.bodyMdMedium.copyWith(
+                  color: context.colorScheme.onSurface.withValues(alpha: 0.7),
+                ),
+              ),
+            ],
+          ),
+        ),
+        // ${PortfolioData.phone}
+        const Gap(30),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          decoration: BoxDecoration(
+            color: context.colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.05),
+                blurRadius: 10,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.phone, color: AppColors.primaryColor),
+              const Gap(8),
+              Text(
+                PortfolioData.phone,
                 style: context.appTextStyles.bodyMdMedium.copyWith(
                   color: context.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),

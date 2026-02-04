@@ -6,6 +6,8 @@
     "about_me": "About Me",
     "projects": "Projects",
     "english": "English",
+    "home": "Home",
+    "salut_im": "Salut, I'm",
     "arabic": "Arabic",
     "contact_me": "Contact Me",
     "professional_experience": "Professional Experience",
@@ -14,8 +16,10 @@
     "name": "Mohamed Adel Abdelwahab",
     "title": "Flutter Developer",
     "location": "Alexandria, Egypt",
-    "objective": "Dedicated Flutter developer with + 2 years of experience in building high-performance, user-friendly mobile apps. Skilled in writing clean, maintainable code, collaborating effectively within teams, and using AI tools to enhance development workflows and optimize user experience.",
+    "objective": "Dedicated *Flutter Developer* with *2 years of experience* in building high-performance, user-friendly mobile apps. Skilled in writing clean, maintainable code, collaborating effectively within teams, and using AI tools to enhance development workflows and optimize user experience.",
     "email_me": "Email Me",
+    "linkedIn": "LinkedIn",
+    "github": "GitHub",
     "call_me": "Call Me",
     "whatsapp_me": "WhatsApp Me",
     "view_project": "View Project",
@@ -49,5 +53,9 @@
     "education_grade": "Very Good (GPA: 3.2)",
     "graduation_project": "Peer To Peer Tutoring on University Campus App",
     "graduation_project_grade": "Excellent (A+)",
-    "military_service_status": "Completed (Mar 2021 – Mar 2022)"
+    "military_service_status": "Completed (Mar 2021 – Mar 2022)",
+    "grade_label": "Grade",
+    "graduation_project_label": "Graduation Project",
+    "get_in_touch": "Get in Touch",
+    "copyright": "All rights reserved."
 }

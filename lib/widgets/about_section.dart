@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../extensions.dart';
-import '../style/app_colors.dart';
+import '../locale_keys.dart';
 import '../style/app_size.dart';
 
 class AboutSection extends StatelessWidget {
@@ -23,35 +23,30 @@ class AboutSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("About Me", style: context.appTextStyles.titleLgBlod),
+              Text(
+                LocaleKeys.aboutMe,
+                style: context.appTextStyles.titleLgBlod,
+              ),
               const Gap(20),
               Text.rich(
                 TextSpan(
                   style: context.appTextStyles.bodyLgMedium.copyWith(
                     height: 1.6,
                   ),
-                  children: [
-                    const TextSpan(text: "Dedicated "),
-                    TextSpan(
-                      text: "Flutter developer",
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const TextSpan(text: " with "),
-                    TextSpan(
-                      text: "+ 2 years of experience",
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const TextSpan(
-                      text:
-                          " in building high-performance, user-friendly mobile apps. Skilled in writing clean, maintainable code, collaborating effectively within teams, and using AI tools to enhance development workflows and optimize user experience.",
-                    ),
-                  ],
+                  children: LocaleKeys.objective.split('*').asMap().entries.map(
+                    (entry) {
+                      final isHighlight = entry.key % 2 != 0;
+                      return TextSpan(
+                        text: entry.value,
+                        style: isHighlight
+                            ? TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              )
+                            : null,
+                      );
+                    },
+                  ).toList(),
                 ),
               ),
             ],
