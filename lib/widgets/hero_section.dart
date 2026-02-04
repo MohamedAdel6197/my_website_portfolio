@@ -56,7 +56,6 @@ class _HeroImage extends StatelessWidget {
       height: 320,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        // Gradient Border
         gradient: isDark ? AppColors.accentGradient : AppColors.primaryGradient,
         boxShadow: [
           BoxShadow(
@@ -117,7 +116,6 @@ class _HeroContent extends StatelessWidget {
               const Icon(Icons.waving_hand, color: Colors.amber),
               const Gap(10),
               Text(
-                // "👋 Salut, I'm",
                 LocaleKeys.salutIm,
                 style: context.appTextStyles.titleMdMedium.copyWith(
                   color: AppColors.primaryColor,
@@ -207,7 +205,6 @@ class _HeroContent extends StatelessWidget {
             ],
           ),
         ),
-        // ${PortfolioData.phone}
         const Gap(30),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

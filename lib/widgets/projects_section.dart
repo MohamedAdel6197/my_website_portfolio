@@ -35,7 +35,6 @@ class ProjectsSection extends StatelessWidget {
               LayoutBuilder(
                 builder: (context, constraints) {
                   final isDesktop = context.isDesktop(context);
-                  // Simple responsive grid logic using Wrap or GridView
                   if (isDesktop) {
                     return Wrap(
                       spacing: 24,

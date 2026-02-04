@@ -9,7 +9,6 @@ class DrawerIcon extends StatefulWidget {
 
 class _DrawerIconState extends State<DrawerIcon>
     with SingleTickerProviderStateMixin {
-  //
   late AnimationController controller;
   late Animation<double> animation;
 

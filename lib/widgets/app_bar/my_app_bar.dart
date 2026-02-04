@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,7 +21,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       alignment: Alignment.center,
       height: context.insets.appBarHeight,
       padding: EdgeInsets.symmetric(horizontal: context.insets.padding),
-      // color: Theme.of(context).appBarTheme.backgroundColor,
       color: context.theme.appBarTheme.backgroundColor,
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: Insets.maxWidth),
@@ -30,13 +28,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AppBarLogo(),
-            // const SizedBox(width: 20),
             AppBarTitle(),
-            // Spacer(),
             if (context.isDesktop(context)) AppBarLargeMenu(),
-            // Spacer(),
             AppBarLanguageToggle(),
-            // const SizedBox(width: 20),
             AppBarThemeToggle(),
             if (!context.isDesktop(context)) DrawerIcon(),
           ],
@@ -47,7 +41,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize {
-    // We get the window size to determine the height without needing a BuildContext
     final window = WidgetsBinding.instance.platformDispatcher.views.first;
     final width = window.physicalSize.width / window.devicePixelRatio;
 
@@ -124,12 +117,7 @@ class AppBarLargeMenuItem extends StatelessWidget {
           horizontal: Insets.medPadding,
           vertical: Insets.xSmallPadding,
         ),
-        child: Text(
-          title,
-          style: /* isSelected
-              ? context.appTextStyles.titleLgBlod :*/
-              SmallTextStyles().bodyLgMedium,
-        ),
+        child: Text(title, style: SmallTextStyles().bodyLgMedium),
       ),
     );
   }

@@ -34,7 +34,6 @@ class AppColors {
   static const Color darkSurfaceColor = Color(0xFF2D2D44);
   static const Color lightSurfaceColor = Color(0xFFFFFFFF);
 
-  // static const Color primaryColor = Color(0xFF561895);
   static const Color flutterColor = Color(0xFF0175C2);
 
   static const grey = MaterialColor(100, {

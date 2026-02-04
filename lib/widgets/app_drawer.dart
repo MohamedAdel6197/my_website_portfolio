@@ -54,9 +54,7 @@ class AppDrawer extends StatelessWidget {
                     style: context.appTextStyles.bodyLgMedium,
                   ),
                   onTap: () {
-                    // Navigate or scroll to section
                     Navigator.pop(context);
-                    // For now, these might need to be linked to scroll controllers
                   },
                 );
               },

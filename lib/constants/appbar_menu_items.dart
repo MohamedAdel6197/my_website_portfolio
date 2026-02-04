@@ -10,7 +10,6 @@ class AppbarMenuItems {
       MenuItem(LocaleKeys.professionalExperience, AppRoutes.experience),
       MenuItem(LocaleKeys.projects, AppRoutes.projects),
       MenuItem(LocaleKeys.courses, AppRoutes.courses),
-      // MenuItem(LocaleKeys.skills, AppRoutes.skills),
     ];
   }
 }

@@ -50,7 +50,4 @@ extension StyleContextExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
 
   ColorScheme get colorScheme => theme.colorScheme;
-
-  // AppLocalizations get texts =>
-  //     AppLocalizations.of(this) ?? lookupAppLocalizations(Locale("en"));
 }
