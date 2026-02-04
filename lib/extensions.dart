@@ -13,7 +13,7 @@ extension StyleContextExtension on BuildContext {
   DeviceType get deviceType {
     if (width < 600) {
       return DeviceType.mobile;
-    } else if (width < 900) {
+    } else if (width < 950) {
       return DeviceType.tablet;
     } else {
       return DeviceType.desktop;

@@ -13,7 +13,7 @@ import '../../style/app_size.dart';
 import 'drawer_icon.dart';
 import 'language_switch.dart';
 
-class MyAppBar extends StatelessWidget {
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({super.key});
 
   @override
@@ -45,6 +45,19 @@ class MyAppBar extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize {
+    // We get the window size to determine the height without needing a BuildContext
+    final window = WidgetsBinding.instance.platformDispatcher.views.first;
+    final width = window.physicalSize.width / window.devicePixelRatio;
+
+    if (width < 600) {
+      return const Size.fromHeight(60);
+    } else {
+      return const Size.fromHeight(70);
+    }
+  }
 }
 
 class AppBarLogo extends StatelessWidget {
@@ -54,14 +67,9 @@ class AppBarLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       FontAwesomeIcons.flutter,
-      size: 40,
+      size: context.isDesktop(context) ? 40 : 30,
       color: AppColors.primaryColor,
     );
-    /*  Image.asset(
-      "assets/images/my_icon.png",
-      height: 50,
-      // width: 50,
-    ); */
   }
 }
 
@@ -70,7 +78,6 @@ class AppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final width = MediaQuery.of(context).size.width;
     return Text(
       LocaleKeys.mohamedAdel,
       style: context.appTextStyles.titleLgBlod,
@@ -84,7 +91,7 @@ class AppBarLargeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      spacing: 20,
+      spacing: context.isDesktop(context) ? 15 : 5,
       children: AppbarMenuItems.getMenuItems(context)
           .map(
             (e) => AppBarLargeMenuItem(
@@ -142,6 +149,7 @@ class AppBarThemeToggle extends ConsumerWidget {
         ref.read(appThemeControllerProvider.notifier).toggleTheme();
       },
       activeThumbColor: context.colorScheme.primary,
+      padding: EdgeInsets.zero,
       thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
         Set<WidgetState> states,
       ) {

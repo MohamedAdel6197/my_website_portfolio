@@ -6,6 +6,7 @@ import 'package:localingo/localingo.dart';
 import 'home_page.dart';
 import 'shared/app_locale_controller.dart';
 import 'shared/app_theme_controller.dart';
+import 'style/app_colors.dart';
 import 'style/app_theme.dart';
 
 void main() {
@@ -48,7 +49,9 @@ class MainApp extends ConsumerWidget {
           if (locale.isLoading || themeMode.isLoading)
             Container(
               color: Colors.black54,
-              child: const Center(child: CircularProgressIndicator()),
+              child: const Center(
+                child: CircularProgressIndicator(color: AppColors.primaryColor),
+              ),
             ),
         ],
       ),

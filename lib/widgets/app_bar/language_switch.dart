@@ -24,7 +24,7 @@ class AppBarLanguageToggle extends ConsumerWidget {
                 ? FontAwesomeIcons.globe
                 : FontAwesomeIcons.language,
             color: context.colorScheme.onSurface,
-            size: 16,
+            size: 15,
           ),
           Gap(8),
           Text(

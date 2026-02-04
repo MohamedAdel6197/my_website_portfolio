@@ -28,7 +28,7 @@ class SmallTextStyles extends AppTextStyles {
 
   @override
   TextStyle get titleLgBlod =>
-      TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
 
   @override
   TextStyle get titleMdMedium =>

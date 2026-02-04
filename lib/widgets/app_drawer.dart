@@ -71,6 +71,10 @@ class AppDrawer extends StatelessWidget {
     switch (path) {
       case AppRoutes.home:
         return Icons.home_outlined;
+      case AppRoutes.about:
+        return Icons.person_outline;
+      case AppRoutes.experience:
+        return Icons.history_outlined;
       case AppRoutes.contactMe:
         return Icons.contact_mail_outlined;
       case AppRoutes.courses:
