@@ -117,7 +117,12 @@ class AppBarLargeMenuItem extends StatelessWidget {
           horizontal: Insets.medPadding,
           vertical: Insets.xSmallPadding,
         ),
-        child: Text(title, style: SmallTextStyles().bodyLgMedium),
+        child: Text(
+          title,
+          style:
+              // isSelected? context.appTextStyles.bodyLgMedium :
+              SmallTextStyles().bodyLgMedium,
+        ),
       ),
     );
   }

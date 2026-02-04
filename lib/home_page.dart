@@ -9,7 +9,7 @@ import 'widgets/courses_section.dart';
 import 'widgets/experience_section.dart';
 import 'widgets/hero_section.dart';
 import 'widgets/projects_section.dart';
-import 'widgets/skills_section.dart'; // Added this import
+import 'widgets/skills_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

@@ -9,7 +9,7 @@ class AnimatedGradientOrbs extends StatefulWidget {
 
   const AnimatedGradientOrbs({
     super.key,
-    this.orbCount = 5,
+    this.orbCount = 7,
     required this.child,
   });
 
@@ -53,11 +53,11 @@ class _AnimatedGradientOrbsState extends State<AnimatedGradientOrbs>
 
   Color _getRandomColor(int index) {
     final colors = [
-      const Color(0xFF6366F1).withOpacity(0.15), // Indigo
-      const Color(0xFF8B5CF6).withOpacity(0.15), // Purple
-      const Color(0xFFEC4899).withOpacity(0.15), // Pink
-      const Color(0xFF3B82F6).withOpacity(0.15), // Blue
-      const Color(0xFF06B6D4).withOpacity(0.15), // Cyan
+      const Color(0xFF6366F1).withValues(alpha: 0.25), // Indigo
+      const Color(0xFF8B5CF6).withValues(alpha: 0.25), // Purple
+      const Color(0xFFEC4899).withValues(alpha: 0.25), // Pink
+      const Color(0xFF3B82F6).withValues(alpha: 0.25), // Blue
+      const Color(0xFF06B6D4).withValues(alpha: 0.25), // Cyan
     ];
     return colors[index % colors.length];
   }
