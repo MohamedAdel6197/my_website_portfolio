@@ -1,24 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Primary Palette
-  static const Color primaryColor = Color(
-    0xFF6C63FF,
-  ); // More vibrant purple/indigo accent
-  static const Color secondaryColor = Color(
-    0xFF00BFA5,
-  ); // Teal/Cyan accent for contrast
-  static const Color tertiaryColor = Color(
-    0xFFFF6584,
-  ); // Pink/Salmon accent depending on use
+  static const Color primaryColor = Color(0xFF6C63FF);
+  static const Color secondaryColor = Color(0xFF00BFA5);
+  static const Color tertiaryColor = Color(0xFFFF6584);
+  static const Color darkBackgroundColor = Color(0xFF1E1E2C);
+  static const Color lightBackgroundColor = Color(0xFFF4F6F8);
 
-  // Backgrounds
-  static const Color darkBackgroundColor = Color(
-    0xFF1E1E2C,
-  ); // Rich dark blue-grey
-  static const Color lightBackgroundColor = Color(0xFFF4F6F8); // Soft off-white
-
-  // Gradients
   static const LinearGradient primaryGradient = LinearGradient(
     colors: [Color(0xFF6C63FF), Color(0xFF3F3D56)],
     begin: Alignment.topLeft,

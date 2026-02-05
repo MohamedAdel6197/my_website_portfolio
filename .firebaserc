@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "my-flutter-portfolio-bfc1d"
-  }
+  },
+  "targets": {
+    "my-flutter-portfolio-bfc1d": {
+      "hosting": {
+        "portfolio": [
+          "mohamed-adel-portfolio"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
