@@ -24,6 +24,20 @@ class AppColors {
 
   static const Color flutterColor = Color(0xFF0175C2);
 
+  static const Color white = Colors.white;
+  static const Color white70 = Colors.white70;
+  static const Color white38 = Colors.white38;
+  static const Color black = Colors.black;
+  static const Color amber = Colors.amber;
+  static const Color blue = Colors.blue;
+  static const Color transparent = Colors.transparent;
+
+  static const Color orbIndigo = Color(0xFF6366F1);
+  static const Color orbPurple = Color(0xFF8B5CF6);
+  static const Color orbPink = Color(0xFFEC4899);
+  static const Color orbBlue = Color(0xFF3B82F6);
+  static const Color orbCyan = Color(0xFF06B6D4);
+
   static const grey = MaterialColor(100, {
     100: Color(0xffFBFBFB),
     200: Color(0xffE2E2E2),

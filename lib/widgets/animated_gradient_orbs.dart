@@ -3,6 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../style/app_colors.dart';
+
 class AnimatedGradientOrbs extends StatefulWidget {
   final int orbCount;
   final Widget child;
@@ -53,11 +55,11 @@ class _AnimatedGradientOrbsState extends State<AnimatedGradientOrbs>
 
   Color _getRandomColor(int index) {
     final colors = [
-      const Color(0xFF6366F1).withValues(alpha: 0.25), // Indigo
-      const Color(0xFF8B5CF6).withValues(alpha: 0.25), // Purple
-      const Color(0xFFEC4899).withValues(alpha: 0.25), // Pink
-      const Color(0xFF3B82F6).withValues(alpha: 0.25), // Blue
-      const Color(0xFF06B6D4).withValues(alpha: 0.25), // Cyan
+      AppColors.orbIndigo.withValues(alpha: 0.25), // Indigo
+      AppColors.orbPurple.withValues(alpha: 0.25), // Purple
+      AppColors.orbPink.withValues(alpha: 0.25), // Pink
+      AppColors.orbBlue.withValues(alpha: 0.25), // Blue
+      AppColors.orbCyan.withValues(alpha: 0.25), // Cyan
     ];
     return colors[index % colors.length];
   }

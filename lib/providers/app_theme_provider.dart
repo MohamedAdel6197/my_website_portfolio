@@ -19,8 +19,6 @@ class AppTheme extends _$AppTheme {
         ? ThemeMode.dark
         : ThemeMode.light;
 
-    state = const AsyncLoading();
-    await Future.delayed(const Duration(milliseconds: 500));
     await AppSharedPref.setTheme(
       newTheme == ThemeMode.light ? 'light' : 'dark',
     );

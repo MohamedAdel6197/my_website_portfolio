@@ -6,6 +6,7 @@ import '../constants/appbar_menu_items.dart';
 import '../extensions.dart';
 import '../locale_keys.dart';
 import '../providers/current_section_provider.dart';
+import '../style/app_colors.dart';
 import '../style/app_size.dart';
 
 class AppDrawer extends ConsumerWidget {
@@ -82,7 +83,7 @@ class AppDrawer extends ConsumerWidget {
             padding: const EdgeInsets.all(4), // Border width
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.white, width: 2),
+                border: Border.all(color: AppColors.white, width: 2),
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: AssetImage("assets/images/mhmd.jpg"),
@@ -156,8 +157,8 @@ class _DrawerTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
           color: isSelected
-              ? context.colorScheme.primary.withValues(alpha: 0.1)
-              : Colors.transparent,
+              ? AppColors.primaryColor.withValues(alpha: 0.1)
+              : AppColors.transparent,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected

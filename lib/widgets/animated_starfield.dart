@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../style/app_colors.dart';
+
 class AnimatedStarfield extends StatefulWidget {
   final int starCount;
   final double minStarSize;
@@ -14,7 +16,7 @@ class AnimatedStarfield extends StatefulWidget {
     this.starCount = 100,
     this.minStarSize = 1.0,
     this.maxStarSize = 3.0,
-    this.starColor = Colors.white,
+    this.starColor = AppColors.white,
     required this.child,
   });
 

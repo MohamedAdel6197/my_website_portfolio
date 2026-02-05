@@ -113,7 +113,7 @@ class _HeroContent extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.waving_hand, color: Colors.amber),
+              const Icon(Icons.waving_hand, color: AppColors.amber),
               const Gap(10),
               Text(
                 LocaleKeys.salutIm,
@@ -138,7 +138,7 @@ class _HeroContent extends StatelessWidget {
             style: context.appTextStyles.titleLgBlod.copyWith(
               fontSize: context.isMobile(context) ? 48 : 72,
               height: 1.0,
-              color: Colors.white, // Required for ShaderMask
+              color: AppColors.white,
             ),
           ),
         ),
@@ -282,13 +282,17 @@ class _ContactChip extends StatelessWidget {
             Icon(
               icon,
               size: 20,
-              color: isPrimary ? Colors.white : context.colorScheme.onSurface,
+              color: isPrimary
+                  ? AppColors.white
+                  : context.colorScheme.onSurface,
             ),
             const Gap(10),
             Text(
               label,
               style: context.appTextStyles.bodyMdMedium.copyWith(
-                color: isPrimary ? Colors.white : context.colorScheme.onSurface,
+                color: isPrimary
+                    ? AppColors.white
+                    : context.colorScheme.onSurface,
                 fontWeight: isPrimary ? FontWeight.bold : FontWeight.w500,
               ),
             ),

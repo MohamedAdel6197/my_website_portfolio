@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../extensions.dart';
 import '../locale_keys.dart';
 import '../models/portfolio_data.dart';
+import '../style/app_colors.dart';
 import '../style/app_size.dart';
 
 class ContactSection extends StatelessWidget {
@@ -25,7 +26,7 @@ class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black, // Darker footer
+      color: AppColors.black, // Darker footer
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         vertical: context.insets.sectionPadding,
@@ -39,21 +40,21 @@ class ContactSection extends StatelessWidget {
               Text(
                 LocaleKeys.getInTouch,
                 style: context.appTextStyles.titleLgBlod.copyWith(
-                  color: Colors.white,
+                  color: AppColors.white,
                 ),
               ),
               const Gap(30),
               Text(
                 PortfolioData.email,
                 style: context.appTextStyles.titleMdMedium.copyWith(
-                  color: Colors.white70,
+                  color: AppColors.white70,
                 ),
               ),
               const Gap(10),
               Text(
                 PortfolioData.phone,
                 style: context.appTextStyles.titleMdMedium.copyWith(
-                  color: Colors.white70,
+                  color: AppColors.white70,
                 ),
               ),
               const Gap(40),
@@ -64,7 +65,7 @@ class ContactSection extends StatelessWidget {
                     onPressed: () => _launchUrl(PortfolioData.githubUrl),
                     icon: const Icon(
                       FontAwesomeIcons.github,
-                      color: Colors.white,
+                      color: AppColors.white,
                     ),
                     tooltip: LocaleKeys.github,
                   ),
@@ -73,7 +74,7 @@ class ContactSection extends StatelessWidget {
                     onPressed: () => _launchUrl(PortfolioData.linkedinUrl),
                     icon: const Icon(
                       FontAwesomeIcons.linkedin,
-                      color: Colors.white,
+                      color: AppColors.white,
                     ),
                     tooltip: LocaleKeys.linkedIn,
                   ),
@@ -83,7 +84,7 @@ class ContactSection extends StatelessWidget {
               Text(
                 "© ${DateTime.now().year} ${PortfolioData.name}. ${LocaleKeys.copyright}",
                 style: context.appTextStyles.bodyMdMedium.copyWith(
-                  color: Colors.white38,
+                  color: AppColors.white38,
                 ),
               ),
             ],

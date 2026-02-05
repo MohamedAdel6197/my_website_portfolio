@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import '../extensions.dart';
 import '../locale_keys.dart';
 import '../models/portfolio_data.dart';
+import '../style/app_colors.dart';
 import '../style/app_size.dart';
 
 class AboutSection extends StatelessWidget {
@@ -41,7 +42,7 @@ class AboutSection extends StatelessWidget {
                         text: entry.value,
                         style: isHighlight
                             ? const TextStyle(
-                                color: Colors.blue,
+                                color: AppColors.blue,
                                 fontWeight: FontWeight.bold,
                               )
                             : null,
@@ -97,7 +98,7 @@ class _EducationCard extends StatelessWidget {
               ? Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: AppColors.blue,
                     shape: BoxShape.circle,
                   ),
                   child: Image.asset(

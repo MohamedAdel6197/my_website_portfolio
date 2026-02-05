@@ -15,8 +15,6 @@ class AppLocale extends _$AppLocale {
     final currentLocale = state.value ?? 'en';
     final newLocale = currentLocale == 'en' ? 'ar' : 'en';
 
-    state = const AsyncLoading();
-    await Future.delayed(const Duration(milliseconds: 500));
     await AppSharedPref.setLocale(newLocale);
     state = AsyncData(newLocale);
   }
